@@ -4,7 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use App\Model\Kecamatan;
 use App\Model\Kelurahan;
-use App\Model\Rt;
+use App\Model\RT; //rt
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
