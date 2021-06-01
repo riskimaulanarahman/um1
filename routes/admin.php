@@ -17,17 +17,22 @@ Auth::routes();
 
 Route::group( ['prefix' => 'admin','as' => 'admin.','middleware' => ['auth','roleAdmin']], function() {
 
-    Route::get('/dashboard-admin', function () {
-        return view('pages/superadmin/home_admin');
-    })->name('dashboard-admin');
+    // Route::get('/dashboard-admin', function () {
+    //     return view('pages/superadmin/home_admin');
+    // })->name('dashboard-admin');
+    Route::get('/dashboard-admin', 'API\LaporanController@indexadmin')->name('dashboard-admin');
 
-    Route::get('/master-kecamatan', function () {
-      return view('pages/superadmin/master-kecamatan');
-    })->name('master-kecamatan');
+    // Route::get('/master-kecamatan', function () {
+    //   return view('pages/superadmin/master-kecamatan');
+    // })->name('master-kecamatan');
 
-    Route::get('/master-kelurahan', function () {
-      return view('pages/superadmin/master-kelurahan');
-    })->name('master-kelurahan');
+    // Route::get('/master-kelurahan', function () {
+    //   return view('pages/superadmin/master-kelurahan');
+    // })->name('master-kelurahan');
+
+    Route::get('/master-rt', function () {
+      return view('pages/superadmin/master-rt');
+    })->name('master-rt');
 
 
     //Start Route Master User

@@ -145,11 +145,11 @@
 				<span class="d-none d-md-inline">{{ Auth::user()->name }}</span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
-				<!-- <a href="javascript:;" class="dropdown-item">Edit Profile</a>
-				<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+				<a href="javascript:;" class="dropdown-item" data-toggle="modal" data-target="#modal-edit-password">Edit Password</a>
+				{{-- <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
 				<a href="javascript:;" class="dropdown-item">Calendar</a>
-				<a href="javascript:;" class="dropdown-item">Setting</a>
-				<div class="dropdown-divider"></div> -->
+				<a href="javascript:;" class="dropdown-item">Setting</a> --}}
+				<div class="dropdown-divider"></div>
 				<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 					{{ csrf_field() }}
@@ -168,3 +168,35 @@
 	<!-- end header navigation right -->
 </div>
 <!-- end #header -->
+
+<div class="modal fade" id="modal-edit-password">
+	<div class="modal-dialog">
+		<form method="post" action="{{ route('warga.editpassword', ['id' => Auth::user()->id_users]) }}"  enctype="multipart/form-data">
+			{{ csrf_field() }}
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Edit Password</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body">
+					<label class="control-label">New Password <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('password') ? ' has-error' : '' }}">
+						<div class="col-md-12 m-b-15">
+							<input type="text" id="password" name="password" class="form-control" required>
+							@if ($errors->has('password'))
+								<span class="help-block">
+									<strong>{{ $errors->first('password') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+					<button type="submit" class="btn btn-warning">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

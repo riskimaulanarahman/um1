@@ -9,6 +9,8 @@ use App\Model\SA_MasterUser as User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GenerateMailController;
+use Illuminate\Support\Carbon;
+
 use Auth;
 
 class LaporanController extends Controller
@@ -18,15 +20,40 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function indexadmin()
+    {
+
+        $laporan = Laporan::select('tbl_laporan.*','users.name','users.nomor_rt')
+        ->join('users','users.id_users','tbl_laporan.id_users')
+        ->get();
+
+        $today = Laporan::whereDate('created_at',Carbon::today())->count();
+        $week = Laporan::where('created_at', '>', Carbon::now()->startOfWeek())
+            ->where('created_at', '<', Carbon::now()->endOfWeek())
+            ->count();
+        $month = Laporan::whereMonth('created_at',Carbon::now()->month)->count();
+        $notread = Laporan::where('status','menunggu')->count();
+
+        // return $laporan;
+
+        return view('pages/superadmin/home_admin',[
+            'laporan' => $laporan,
+            'today' => $today,
+            'week' => $week,
+            'month' => $month,
+            'notread' => $notread,
+        ]);
+    }
+
     public function index()
     {
         $user = Auth::user();
 
-        $namart = User::where('kode_kelurahan',$user->kode_kelurahan)->where('nomor_rt',$user->nomor_rt)->where('isRT',1)->first();
+        $namart = User::where('nomor_rt',$user->nomor_rt)->where('isRT',1)->first();
 
         $laporan = Laporan::select('tbl_laporan.*','users.name')
         ->join('users','users.id_users','tbl_laporan.id_users')
-        ->where('users.kode_kelurahan',$user->kode_kelurahan)
+        // ->where('users.kode_kelurahan',$user->kode_kelurahan)
         ->where('tbl_laporan.id_users',$user->id_users)
         ->get();
 
@@ -140,6 +167,29 @@ class LaporanController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function editpassword(Request $request, $id)
+    {
+        $user = Auth::user();
+
+        $pass = $request->password;
+        $warga = User::findorfail($id);
+        
+        $warga->password = bcrypt($pass);
+        $warga->pass_txt = $pass;
+        $warga->save();
+
+        $module = "edit password";
+        $id_users = $user->id_users;
+        $email = $warga->email;
+        $nama = $warga->name;
+        $text = "password baru anda adalah ".$pass."";
+
+        $mail = new GenerateMailController;
+        $mail->generateMail($module,$id_users,$email,$nama,$text);
+
+        return redirect()->route('warga.dashboard-warga.index')->with('status','berhasil edit password');
     }
 
     /**

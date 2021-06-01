@@ -42,13 +42,13 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">username <span class="text-danger">*</span></label>
-                            <div class="row row-space-10 {{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label class="control-label">nik <span class="text-danger">*</span></label>
+                            <div class="row row-space-10 {{ $errors->has('nik') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="{{ $user->username }}" required />
-                                    @if ($errors->has('username'))
+                                    <input type="text" id="nik" name="nik" class="form-control" placeholder="nik" value="{{ $user->nik }}" required />
+                                    @if ($errors->has('nik'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
+                                            <strong>{{ $errors->first('nik') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -80,7 +80,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <label class="control-label">Status Aktivasi <span class="text-danger">*</span></label>
+                            {{-- <label class="control-label">Status Aktivasi <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('isActive') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="isActive" id="isActive" required>
@@ -95,7 +95,7 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
                             <label class="control-label">Status Ketua RT <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('isRT') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">

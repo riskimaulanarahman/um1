@@ -49,12 +49,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
+            'nik' => 'required|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'kecamatan' => 'required',
-            'kelurahan' => 'required',
-            'rt' => 'required',
+            // 'kecamatan' => 'required',
+            // 'kelurahan' => 'required',
+            'nomor_rt' => 'required',
         ]);
     }
 
@@ -68,12 +68,12 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'username' => $data['username'],
+            'nik' => $data['nik'],
             'email' => $data['email'],
             'notelp' => $data['notelp'],
-            'kode_kecamatan' => $data['kecamatan'],
-            'kode_kelurahan' => $data['kelurahan'],
-            'nomor_rt' => $data['rt'],
+            // 'kode_kecamatan' => $data['kecamatan'],
+            // 'kode_kelurahan' => $data['kelurahan'],
+            'nomor_rt' => $data['nomor_rt'],
             'password' => bcrypt($data['password']),
             'pass_txt' => $data['password'],
             'role' => 'warga',

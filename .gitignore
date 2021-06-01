@@ -10,7 +10,7 @@
 # npm-debug.log
 # yarn-error.log
 # /.vscode
-# .env
+.env
 # .gitattributes
 # .gitignore
 # .htaccess

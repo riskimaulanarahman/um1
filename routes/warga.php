@@ -17,6 +17,7 @@ Route::group( ['prefix' => 'warga','as' => 'warga.','middleware' => ['auth','cor
 
     Route::resource('/dashboard-warga','API\LaporanController');
     Route::post('/dashboard-warga/laporan-update/{id}','API\LaporanController@updatelaporan')->name('laporan.update');
+    Route::post('/dashboard-warga/edit-password/{id}','API\LaporanController@editpassword')->name('editpassword');
 
 
 });

@@ -20,6 +20,8 @@ Route::group( ['prefix' => 'rt','as' => 'rt.'], function() {
     Route::post('/dashboard-rt/laporan-updateaksi/{id}','API\LaporanRtController@updateaksi')->name('laporan.updateaksi');
 
     Route::resource('/data-warga','API\DatawargartController');
+    Route::get('/reset-pass/{id}','API\DatawargartController@resetpass')->name('resetpass');
+
 
 
 

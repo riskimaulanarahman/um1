@@ -28,11 +28,11 @@
 					<div class="form-group m-b-15">
 						<!-- <input type="text" class="form-control form-control-lg" placeholder="Email Address" required /> -->
 						<input id="login" type="text"
-                                    class="form-control form-control-lg {{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}"
-                                    name="login" value="{{ old('username') ?: old('email') }}"  placeholder="Username " required autofocus>
-						@if ($errors->has('username') || $errors->has('email'))
+                                    class="form-control form-control-lg {{ $errors->has('nik') || $errors->has('email') ? ' is-invalid' : '' }}"
+                                    name="login" value="{{ old('nik') ?: old('email') }}"  placeholder="NIK / Email " required autofocus>
+						@if ($errors->has('nik') || $errors->has('email'))
 						<span class="invalid-feedback">
-							<strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
+							<strong>{{ $errors->first('nik') ?: $errors->first('email') }}</strong>
 						</span>
 						@endif
 					</div>
@@ -53,9 +53,9 @@
 					<div class="login-buttons">
 						<button type="submit" class="btn btn-primary btn-block btn-lg"> <i class="fa fa-sign-in-alt"></i> Masuk</button>
 					</div>
-					<!-- <div class="m-t-20 m-b-40 p-b-40 text-inverse">
-					 <a href="" target="_blank" class="f-s-20"><i class="fas fa-lg fa-fw m-r-10 fa-cloud-download-alt"></i> Download Document here</a>
-					</div> -->
+					<div class="m-t-20">
+						Belum Punya Akun? Klik <a href="/register">disini</a> untuk mendaftar.
+					</div>
 					<hr />
 					<p class="text-center text-grey-darker mb-0">
 						&copy; Universitas Mulia All Right Reserved 2021 Ver 1.0

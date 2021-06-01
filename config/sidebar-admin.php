@@ -14,14 +14,14 @@ return [
     */
 
     'menu' => [
-            // [
-            //     'icon' => 'fa fa-th-large',
-            //     'title' => 'Dashboard',
-            //     'url' => '/admin/dashboard-admin',
-            
-            // ],
             [
-                'icon' => 'fa fa-folder-open',
+                'icon' => 'fa fa-th-large',
+                'title' => 'Dashboard',
+                'url' => '/admin/dashboard-admin',
+            
+            ],
+            [
+                'icon' => 'fa fa-users',
                 'title' => 'Data Users',
                 'url' => 'javascript:;',
                 'caret' => true,
@@ -39,13 +39,13 @@ return [
                 'caret' => true,
                 'sub_menu' => [
                     [
-                        'url' => '/admin/master-kecamatan',
-                        'title' => 'Kecamatan'
+                        'url' => '/admin/master-rt',
+                        'title' => 'RT'
                     ],
-                    [
-                        'url' => '/admin/master-kelurahan',
-                        'title' => 'Kelurahan'
-                    ],
+                    // [
+                    //     'url' => '/admin/master-kelurahan',
+                    //     'title' => 'Kelurahan'
+                    // ],
                 ]
             ],
 

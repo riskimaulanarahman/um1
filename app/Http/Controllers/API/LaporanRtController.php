@@ -25,16 +25,26 @@ class LaporanRtController extends Controller
 
         $laporan = Laporan::select('tbl_laporan.*','users.name')
         ->join('users','users.id_users','tbl_laporan.id_users')
-        ->where('users.kode_kelurahan',$user->kode_kelurahan)
         ->where('users.nomor_rt',$user->nomor_rt)
         ->get();
 
-        $today = Laporan::whereDate('created_at',Carbon::today())->count();
-        $week = Laporan::where('created_at', '>', Carbon::now()->startOfWeek())
-            ->where('created_at', '<', Carbon::now()->endOfWeek())
-            ->count();
-        $month = Laporan::whereMonth('created_at',Carbon::now()->month)->count();
-        $notread = Laporan::where('status','menunggu')->count();
+        $today = Laporan::join('users','users.id_users','tbl_laporan.id_users')
+        ->where('users.nomor_rt',$user->nomor_rt)
+        ->whereDate('tbl_laporan.created_at',Carbon::today())
+        ->count();
+        $week = Laporan::join('users','users.id_users','tbl_laporan.id_users')
+        ->where('users.nomor_rt',$user->nomor_rt)
+        ->where('tbl_laporan.created_at', '>', Carbon::now()->startOfWeek())
+        ->where('tbl_laporan.created_at', '<', Carbon::now()->endOfWeek())
+        ->count();
+        $month = Laporan::join('users','users.id_users','tbl_laporan.id_users')
+        ->where('users.nomor_rt',$user->nomor_rt)
+        ->whereMonth('tbl_laporan.created_at',Carbon::now()->month)
+        ->count();
+        $notread = Laporan::join('users','users.id_users','tbl_laporan.id_users')
+        ->where('users.nomor_rt',$user->nomor_rt)
+        ->where('status','menunggu')
+        ->count();
 
         // return $laporan;
 

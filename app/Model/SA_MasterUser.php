@@ -24,14 +24,14 @@ class SA_MasterUser extends Model
         'updated_at'
     ];
 
-    public function kecamatan()
+    public function rt()
     {
-        return $this->belongsTo('App\Model\Kecamatan','kode_kecamatan','kode_kecamatan');
+        return $this->belongsTo('App\Model\RT','nomor_rt','nomor_rt');
     }
 
-    public function kelurahan()
-    {
-        return $this->belongsTo('App\Model\Kelurahan','kode_kelurahan','kode_kelurahan');
-    }
+    // public function kelurahan()
+    // {
+    //     return $this->belongsTo('App\Model\Kelurahan','kode_kelurahan','kode_kelurahan');
+    // }
 
 }

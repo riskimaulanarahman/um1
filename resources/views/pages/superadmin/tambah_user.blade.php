@@ -108,7 +108,7 @@
                                 </div>
                             </div>
 
-                            <label class="control-label">kecamatan<span class="text-danger">*</span></label>
+                            {{-- <label class="control-label">kecamatan<span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('kode_kecamatan') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="kode_kecamatan" id="kode_kecamatan">
@@ -142,12 +142,19 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <label class="control-label">nomor rt <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('nomor_rt') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
-                                    <input type="text" id="nomor_rt" name="nomor_rt" class="form-control" placeholder="nomor_rt" value="{{ old('nomor_rt') }}"  />
+                                    {{-- <input type="text" id="nomor_rt" name="nomor_rt" class="form-control" placeholder="nomor_rt" value="{{ old('nomor_rt') }}"  /> --}}
+                                    <select class="form-control" name="nomor_rt" id="nomor_rt">
+                                        <option value="">- Pilih Nomor RT-</option>
+                                        @foreach($nort as $id => $nama)
+                                            <option value="{{ $id }}" >{{$id}} ({{ $nama }})</option>
+										@endforeach
+
+                                    </select>
                                     @if ($errors->has('nomor_rt'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('nomor_rt') }}</strong>
@@ -156,7 +163,7 @@
                                 </div>
                             </div>
 
-                            <label class="control-label">Status Ketua RT<span class="text-danger">*</span></label>
+                            {{-- <label class="control-label">Status Ketua RT<span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('isRT') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="isRT" id="isRT">
@@ -171,7 +178,7 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <hr>
                            

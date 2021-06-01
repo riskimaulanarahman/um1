@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Master User')
+@section('title', 'Data Warga')
 
 @push('css')
 	<link href="/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -38,12 +38,10 @@
 					<table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
 						<thead>
 							<tr>
-								<th width="1%">id</th>
+								<th width="1%">#</th>
+								<th class="text-nowrap">nik</th>
 								<th class="text-nowrap">name</th>
-								<th class="text-nowrap">username</th>
 								<th class="text-nowrap">email</th>
-								<th class="text-nowrap">alamat</th>
-								<th class="text-nowrap">nomor rumah</th>
 								<th class="text-nowrap">Aksi</th>
 							</tr>
 						</thead>
@@ -52,13 +50,12 @@
 							@foreach($warga as $p)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
+                                <td>{{ $p->nik }}</td>
                                 <td>{{ $p->name }}</td>
-                                <td>{{ $p->username }}</td>
                                 <td>{{ $p->email }}</td>
-                                <td>{{ $p->alamat }}</td>
-                                <td>{{ $p->nomor_rumah }}</td>
                                 <td>
-                                    <button class="btn btn-danger"><i class="fa fa-key"></i> Reset Password</button>
+                                    {{-- <button class="btn btn-danger" onClick="resetpass({{$p->id_users}});"><i class="fa fa-key"></i> Reset Password</button> --}}
+									<a href="{{ route('rt.resetpass', ['id' => $p->id_users]) }}" onclick="return confirm('Apakah Anda Yakin Reset Password akun ini ?');" class="btn btn-danger">Reset password</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -75,6 +72,14 @@
 @endsection
 
 @push('scripts')
+<script>
+	// function resetpass(id) {
+	// 	// alert(id);
+	// 	$.getJSON('/api/reset-pass/'+id,function(data){
+	// 		console.log(data);
+	// 	});
+	// }
+</script>
 	<script src="/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script src="/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 	<script src="/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>

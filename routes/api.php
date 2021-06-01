@@ -27,6 +27,7 @@ Route::apiResource('laporan-rt', 'API\LaporanRtController');
 //master data
 Route::apiResource('kecamatan', 'API\KecamatanController');
 Route::apiResource('kelurahan', 'API\KelurahanController');
+Route::apiResource('rt', 'API\RtController');
 
 // list option
 Route::get('list-kecamatan','API\ListController@listKecamatan');

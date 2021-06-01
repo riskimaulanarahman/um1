@@ -40,39 +40,40 @@
 					<table id="data-table-responsive" class="table table-striped table-bordered table-td-valign-middle">
 						<thead>
 							<tr>
-								<th width="1%">id</th>
+								<th width="1%">#</th>
 								<th class="text-nowrap">name</th>
-								<th class="text-nowrap">username</th>
+								<th class="text-nowrap">nik</th>
 								<th class="text-nowrap">email</th>
 								<th class="text-nowrap">password</th>
 								<th class="text-nowrap">role</th>
-								<th class="text-nowrap">kecamatan</th>
-								<th class="text-nowrap">kelurahan</th>
+								{{-- <th class="text-nowrap">kecamatan</th>
+								<th class="text-nowrap">kelurahan</th> --}}
 								<th class="text-nowrap">rt</th>
 								<th class="text-nowrap">Status</th>
 								<th class="text-nowrap">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php $no=1; ?>
 							@foreach($user as $p)
                             <tr>
-                                <td class="text-center">{{ $p->id_users }}</td>
+                                <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $p->name }}</td>
-                                <td>{{ $p->username }}</td>
+                                <td>{{ $p->nik }}</td>
                                 <td>{{ $p->email }}</td>
                                 <td>{{ $p->pass_txt }}</td>
                                 <td>{{ $p->role }}</td>
-								@if($p->kecamatan !== null) <td>{{ $p->kecamatan->nama_kecamatan }}</td> @else <td></td> @endif
-								@if($p->kelurahan !== null) <td>{{ $p->kelurahan->nama_kelurahan }}</td> @else <td></td> @endif
+								{{-- @if($p->kecamatan !== null) <td>{{ $p->kecamatan->nama_kecamatan }}</td> @else <td></td> @endif
+								@if($p->kelurahan !== null) <td>{{ $p->kelurahan->nama_kelurahan }}</td> @else <td></td> @endif --}}
                                 <td>{{ $p->nomor_rt }}</td>
                                 <td>
-									@if($p->isActive == 0) <button class="btn btn-danger">Tidak Aktif</button> @else <button class="btn btn-success">Aktif</button> @endif
+									{{-- @if($p->isActive == 0) <button class="btn btn-danger">Tidak Aktif</button> @else <button class="btn btn-success">Aktif</button> @endif --}}
 									@if($p->isRT == 1) <button class="btn btn-success">Ketua RT</button> @endif
 								</td>
                                 <td>
 									@if($p->role !== 'admin')
                                     <a href="{{ route('admin.sa-user-edit', ['id' => $p->id_users]) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ route('admin.sa-user-deleted', ['id' => $p->id_users ]) }}" class="btn btn-danger">Hapus</a>
+                                    <a href="{{ route('admin.sa-user-deleted', ['id' => $p->id_users ]) }}" onclick="return confirm('Apakah Anda Yakin Hapus data ini ?');" class="btn btn-danger">Hapus</a>
 									@endif
                                 </td>
                             </tr>

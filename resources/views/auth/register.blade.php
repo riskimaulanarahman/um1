@@ -29,6 +29,17 @@
 				<form method="POST" class="margin-bottom-0" action="{{ route('register') }}">
 				{{ csrf_field() }}
 
+					<label class="control-label">nik <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('nik') ? ' has-error' : '' }}">
+						<div class="col-md-12 m-b-15">
+							<input type="text" id="nik" name="nik" class="form-control" placeholder="nik" value="{{ old('nik') }}" required />
+							@if ($errors->has('nik'))
+								<span class="help-block">
+									<strong>{{ $errors->first('nik') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
 					<label class="control-label">Name <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('name') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
@@ -36,17 +47,6 @@
 							@if ($errors->has('name'))
 								<span class="help-block">
 									<strong>{{ $errors->first('name') }}</strong>
-								</span>
-							@endif
-						</div>
-					</div>
-					<label class="control-label">username <span class="text-danger">*</span></label>
-					<div class="row row-space-10 {{ $errors->has('username') ? ' has-error' : '' }}">
-						<div class="col-md-12 m-b-15">
-							<input type="text" id="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required />
-							@if ($errors->has('username'))
-								<span class="help-block">
-									<strong>{{ $errors->first('username') }}</strong>
 								</span>
 							@endif
 						</div>
@@ -63,7 +63,7 @@
 							@endif
 						</div>
 					</div>
-					<label class="control-label">kecamatan <span class="text-danger">*</span></label>
+					{{-- <label class="control-label">kecamatan <span class="text-danger">*</span></label>
 					<div class="row row-space-10 {{ $errors->has('kecamatan') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
 							<select class="form-control" name="kecamatan" id="kecamatan">
@@ -96,15 +96,21 @@
 								</span>
 							@endif
 						</div>
-					</div>
-					<label class="control-label">rt <span class="text-danger">*</span></label>
-					<div class="row row-space-10 {{ $errors->has('rt') ? ' has-error' : '' }}">
+					</div> --}}
+					<label class="control-label">nomor rt <span class="text-danger">*</span></label>
+					<div class="row row-space-10 {{ $errors->has('nomor_rt') ? ' has-error' : '' }}">
 						<div class="col-md-12 m-b-15">
-							<input type="number" id="rt" name="rt" class="form-control" placeholder="rt" value="{{ old('rt') }}" required />
+							{{-- <input type="text" id="nomor_rt" name="nomor_rt" class="form-control" placeholder="nomor_rt" value="{{ old('nomor_rt') }}"  /> --}}
+							<select class="form-control" name="nomor_rt" id="nomor_rt">
+								<option value="">- Pilih Nomor RT-</option>
+								@foreach($nort as $id => $nama)
+									<option value="{{ $id }}" >{{$id}} ({{ trim($nama) }})</option>
+								@endforeach
 
-							@if ($errors->has('rt'))
+							</select>
+							@if ($errors->has('nomor_rt'))
 								<span class="help-block">
-									<strong>{{ $errors->first('rt') }}</strong>
+									<strong>{{ $errors->first('nomor_rt') }}</strong>
 								</span>
 							@endif
 						</div>

@@ -21,12 +21,14 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        $kecamatan = Kecamatan::pluck('nama_kecamatan','kode_kecamatan');
-        $kelurahan = Kelurahan::pluck('nama_kelurahan','kode_kelurahan');
+        $nort = RT::pluck('alamat','nomor_rt');
+        // $kecamatan = Kecamatan::pluck('nama_kecamatan','kode_kecamatan');
+        // $kelurahan = Kelurahan::pluck('nama_kelurahan','kode_kelurahan');
 
         return view('auth.register',[
-            'kecamatan' => $kecamatan,
-            'kelurahan' => $kelurahan,
+            'nort' => $nort,
+            // 'kecamatan' => $kecamatan,
+            // 'kelurahan' => $kelurahan,
         ]);
     }
 

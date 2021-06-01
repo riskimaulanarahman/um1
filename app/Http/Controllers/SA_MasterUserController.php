@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Model\SA_MasterUser;
-use App\Model\Kecamatan;
-use App\Model\Kelurahan;
+// use App\Model\Kecamatan;
+// use App\Model\Kelurahan;
+use App\Model\RT;
 use DB;
 use Exception;
 
@@ -15,7 +16,7 @@ class SA_MasterUserController extends Controller
 {
     public function index()
     {
-        $user = SA_MasterUser::with(['kecamatan','kelurahan'])->get();
+        $user = SA_MasterUser::with('rt')->get();
 
         // return $user;
         return view('pages/superadmin/user',['user' => $user]);
@@ -23,12 +24,14 @@ class SA_MasterUserController extends Controller
 
     public function tambah()
     {
-        $kecamatan = Kecamatan::pluck('nama_kecamatan','kode_kecamatan');
-        $kelurahan = Kelurahan::pluck('nama_kelurahan','kode_kelurahan');
+        $nort = RT::pluck('alamat','nomor_rt');
+        // $kecamatan = Kecamatan::pluck('nama_kecamatan','kode_kecamatan');
+        // $kelurahan = Kelurahan::pluck('nama_kelurahan','kode_kelurahan');
 
         return view('pages/superadmin/tambah_user',[
-            'kecamatan' => $kecamatan,
-            'kelurahan' => $kelurahan,
+            'nort' => $nort,
+            // 'kecamatan' => $kecamatan,
+            // 'kelurahan' => $kelurahan,
         ]);
     }
 
@@ -37,31 +40,41 @@ class SA_MasterUserController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'username' => 'required | unique:users',
+                'nik' => 'required | unique:users',
                 'email' => 'required | unique:users',
                 'password' => 'required',
                 'role' => 'required',
-                'kode_kecamatan' => 'required',
-                'kode_kelurahan' => 'required',
                 'nomor_rt' => 'required',
             ]);
 
             try{
-                $users = SA_MasterUser::create([
-                    'name' => $request->name,
-                    'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => bcrypt($request->password),
-                    'pass_txt' => $request->password,
-                    'role' => $request->role,
-                    'notelp' => $request->notelp,
-                    'kode_kecamatan' => $request->kode_kecamatan,
-                    'kode_kelurahan' => $request->kode_kelurahan,
-                    'nomor_rt' => $request->nomor_rt,
-                    'isRT' => $request->isRT,
-                ]);
+                $isRT = ($request->role == 'rt') ? 1:0;
 
-                $data = 'berhasil menambahkan';
+                $cekrt = SA_MasterUser::where('nomor_rt',$request->nomor_rt)->where('role','rt')->count();
+
+                // return $isrt;
+
+                if($cekrt < 1) {
+
+                    $users = SA_MasterUser::create([
+                        'name' => $request->name,
+                        'nik' => $request->username,
+                        'email' => $request->email,
+                        'password' => bcrypt($request->password),
+                        'pass_txt' => $request->password,
+                        'role' => $request->role,
+                        'notelp' => $request->notelp,
+                        // 'kode_kecamatan' => $request->kode_kecamatan,
+                        // 'kode_kelurahan' => $request->kode_kelurahan,
+                        'nomor_rt' => $request->nomor_rt,
+                        'isRT' => $isRT,
+                    ]);
+
+                    $data = 'berhasil menambahkan';
+                } else {
+                    $data = 'Akun RT sudah ada';
+                }
+
                 
             } catch (\Exception $e){
                 $data = array("status"=>"error","message"=>$e->getMessage());
@@ -82,7 +95,7 @@ class SA_MasterUserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'nik' => 'required',
             'email' => 'required',
             'role' => 'required',
         ]);
@@ -90,10 +103,10 @@ class SA_MasterUserController extends Controller
         $user = SA_MasterUser::findOrFail($id);
         $user->update([
             'name' => $request->name,
-            'username' => $request->username,
+            'nik' => $request->username,
             'email' => $request->email,
             'role' => $request->role,
-            'isActive' => $request->isActive,
+            // 'isActive' => $request->isActive,
             'isRT' => $request->isRT,
         ]);
 
@@ -103,7 +116,7 @@ class SA_MasterUserController extends Controller
             $user->save();
         }
 
-        return redirect()->route('admin.sa-user-index');
+        return redirect()->route('admin.sa-user-index')->with('status','berhasil ubah data');
     }
 
     public function deleted($id)
