@@ -159,9 +159,11 @@
 										@else
 											<button class="btn btn-xs {{$warna}}">Tidak Ada Aksi</button> 
 										@endif
+										@if($p->aksi !== 'selesai')
 										<a href="{{ route('rt.dashboard-rt.show', ['id' => $p->id	]) }}"> 
 											<button type="button" class="btn btn-xs btn-inverse"><i class="fa fa-pencil-alt"></i></button>
 										</a>
+										@endif
 									@endif
 								</td>
 								

@@ -105,6 +105,8 @@ class LaporanRtController extends Controller
 
     public function updateaksi(Request $request,$id)
     {
+        $user = Auth::user();
+
         $laporan = Laporan::findOrFail($id);
         $laporan->aksi = $request->aksi;
         $laporan->save();
@@ -113,6 +115,17 @@ class LaporanRtController extends Controller
             "id_laporan" => $laporan->id,
             "keterangan" => $request->keterangan
         ]);
+
+        $warga = User::where('id_users',$laporan->id_users)->first();
+
+        $module = "update progress aksi";
+        $id_users = $user->id_users;
+        $nama = $warga->name;
+        $email = $warga->email;
+        $text = "update progress laporan dengan judul ".$laporan->judul." (".$request->aksi.") , keterangan : ".$request->keterangan;
+
+        $mail = new GenerateMailController;
+        $mail->generateMail($module,$id_users,$email,$nama,$text);
 
         return redirect()->route('rt.dashboard-rt.index')->with('status', "berhasil edit data");
 
@@ -130,7 +143,7 @@ class LaporanRtController extends Controller
         $nama = $warga->name;
 
         $email = $warga->email;
-        $text = "ketua RT telah merespon laporan anda";
+        $text = "ketua RT telah merespon laporan anda yang berjudul : ".$respon->judul;
 
         $respon->update([
             "status" => "direspon"
