@@ -58,7 +58,7 @@ class SA_MasterUserController extends Controller
 
                     $users = SA_MasterUser::create([
                         'name' => $request->name,
-                        'nik' => $request->username,
+                        'nik' => $request->nik,
                         'email' => $request->email,
                         'password' => bcrypt($request->password),
                         'pass_txt' => $request->password,
@@ -103,7 +103,7 @@ class SA_MasterUserController extends Controller
         $user = SA_MasterUser::findOrFail($id);
         $user->update([
             'name' => $request->name,
-            'nik' => $request->username,
+            'nik' => $request->nik,
             'email' => $request->email,
             'role' => $request->role,
             // 'isActive' => $request->isActive,
