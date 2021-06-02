@@ -100,7 +100,8 @@ class LaporanController extends Controller
     {
         $module = "warga lapor";
         $user = Auth::user();
-        $namart = User::where('kode_kelurahan',$user->kode_kelurahan)->where('nomor_rt',$user->nomor_rt)->where('isRT',1)->first();
+        $namart = User::where('nomor_rt',$user->nomor_rt)->where('isRT',1)->first();
+        // where('kode_kelurahan',$user->kode_kelurahan)->
 
         $file = $request->file('gambar');
         $nama_file = $module."_".time()."_".$file->getClientOriginalName();
