@@ -158,9 +158,9 @@
 										@else
 											<button class="btn btn-xs {{$warna}}">Tidak Ada Aksi</button> 
 										@endif
-										{{-- <a href="{{ route('rt.dashboard-rt.show', ['id' => $p->id	]) }}"> 
-											<button type="button" class="btn btn-xs btn-inverse"><i class="fa fa-pencil-alt"></i></button>
-										</a> --}}
+										{{-- <a href="{{ route('rt.dashboard-rt.show', ['id' => $p->id	]) }}">  --}}
+											<button type="button" class="btn btn-xs btn-danger">Hapus</button>
+										{{-- </a> --}}
 									@endif
 								</td>
 								
