@@ -60,13 +60,13 @@
                                 </div>
                             </div>
 
-                            <label class="control-label">username <span class="text-danger">*</span></label>
-                            <div class="row row-space-10 {{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label class="control-label">nik <span class="text-danger">*</span></label>
+                            <div class="row row-space-10 {{ $errors->has('nik') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" />
-                                    @if ($errors->has('username'))
+                                    <input type="text" id="nik" name="nik" class="form-control" placeholder="nik" value="{{ old('nik') }}" />
+                                    @if ($errors->has('nik'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
+                                            <strong>{{ $errors->first('nik') }}</strong>
                                         </span>
                                     @endif
                                 </div>
