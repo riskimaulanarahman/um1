@@ -100,6 +100,8 @@ class SA_MasterUserController extends Controller
             'role' => 'required',
         ]);
 
+        $isRT = ($request->role == 'rt') ? 1:0;
+
         $user = SA_MasterUser::findOrFail($id);
         $user->update([
             'name' => $request->name,
@@ -107,7 +109,7 @@ class SA_MasterUserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
             // 'isActive' => $request->isActive,
-            'isRT' => $request->isRT,
+            'isRT' => $isRT,
         ]);
 
         if(!empty($request->password)) {

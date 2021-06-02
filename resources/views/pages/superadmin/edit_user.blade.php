@@ -96,7 +96,7 @@
                                     @endif
                                 </div>
                             </div> --}}
-                            <label class="control-label">Status Ketua RT <span class="text-danger">*</span></label>
+                            {{-- <label class="control-label">Status Ketua RT <span class="text-danger">*</span></label>
                             <div class="row row-space-10 {{ $errors->has('isRT') ? ' has-error' : '' }}">
                                 <div class="col-md-12 m-b-15">
                                     <select class="form-control" name="isRT" id="isRT" required>
@@ -111,7 +111,7 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> --}}
                             <label class="control-label">password 
                             </label>
                             <div class="row row-space-10 {{ $errors->has('password') ? ' has-error' : '' }}">
