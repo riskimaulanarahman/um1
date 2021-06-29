@@ -120,7 +120,7 @@ class LaporanController extends Controller
             "gambar" => $nama_file,
             "judul" => $request->judul,
             "laporan" => $request->laporan,
-            // "aksi" => "menunggu",
+            "aksi" => "menunggu",
             "status" => "menunggu"
         ];
 
@@ -190,7 +190,7 @@ class LaporanController extends Controller
         $mail = new GenerateMailController;
         $mail->generateMail($module,$id_users,$email,$nama,$text);
 
-        return redirect()->route('warga.dashboard-warga.index')->with('status','berhasil edit password');
+        return redirect()->route('home')->with('status','berhasil edit password');
     }
 
     /**

@@ -173,7 +173,7 @@
 
 <div class="modal fade" id="modal-edit-password">
 	<div class="modal-dialog">
-		<form method="post" action="{{ route('warga.editpassword', ['id' => Auth::user()->id_users]) }}"  enctype="multipart/form-data">
+		<form method="post" action="{{ route('editpassword', ['id' => Auth::user()->id_users]) }}"  enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div class="modal-content">
 				<div class="modal-header">

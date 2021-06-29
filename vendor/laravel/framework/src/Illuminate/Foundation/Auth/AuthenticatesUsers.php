@@ -22,10 +22,11 @@ trait AuthenticatesUsers
     {
         $laporan = Laporan::join('users','users.id_users','tbl_laporan.id_users')
         ->where('tbl_laporan.aksi','=','menunggu')
-        ->where('tbl_laporan.status','!=','ditolak')
+        ->where('tbl_laporan.status','=','direspon')
         ->orderBy('tbl_laporan.created_at','desc')
         ->with('proses')
         ->get();
+        
 
         $laporanproses = Laporan::join('users','users.id_users','tbl_laporan.id_users')
         ->where('tbl_laporan.aksi','=','proses')
