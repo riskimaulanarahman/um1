@@ -141,7 +141,7 @@
 		@endisset
 		<li class="dropdown navbar-user">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<img src="/assets/img/user/user-12.jpg" alt="" /> 
+				{{-- <img src="/assets/img/user/user-12.jpg" alt="" />  --}}
 				<span class="d-none d-md-inline">{{ Auth::user()->name }}</span> <b class="caret"></b>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
