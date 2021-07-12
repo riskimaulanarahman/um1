@@ -31,7 +31,7 @@ class SendMail extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->from('riskimaulanarahmanm@gmail.com')
+        return $this->from('kelurahansumberjo@gmail.com')
             ->view('email')
             ->with([
                 'nama' => $this->nama,
