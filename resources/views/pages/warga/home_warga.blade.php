@@ -106,8 +106,9 @@
 								<td>
 									@if($p->status == 'menunggu')
 									<a href="{{ route('warga.dashboard-warga.show', ['id' => $p->id	]) }}" class="btn btn-warning">Ubah</a>
-                                    <a href="{{ route('warga.dashboard-warga.destroy', ['id' => $p->id ]) }}" class="btn btn-danger">Hapus</a>
 									@endif
+									<a href="{{ route('warga.laporan.hapus', ['id' => $p->id	]) }}" class="btn btn-danger">Hapus</a>
+
 								</td>
 								
                             </tr>
@@ -208,6 +209,17 @@
 @push('scripts')
 
 <script>
+
+	// function deletelaporan(id) {
+	// 	$.ajax({
+	// 		url: '/warga/dashboard-warga/'+id,
+	// 		method: 'DELETE',  // user.destroy
+	// 		success: function(result) {
+	// 			// Do something with the result
+	// 			window.reload();
+	// 		}
+	// 	});
+	// }
 	function details(id) {
 		// alert(id);
 		$('#modal-cek-detail').modal('show');

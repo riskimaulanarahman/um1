@@ -216,8 +216,20 @@ class LaporanController extends Controller
     {
         $laporan = Laporan::findOrFail($id);
         $laporan->delete();
-        return response()->json([
-         'message' => 'laporan deleted successfully'
-        ]);
+        // return response()->json([
+        //  'message' => 'laporan deleted successfully'
+        // ]);
+        return redirect()->route('home')->with('status','berhasil hapus');
+
+    }
+    public function hapuslaporan($id)
+    {
+        $laporan = Laporan::findOrFail($id);
+        $laporan->delete();
+        // return response()->json([
+        //  'message' => 'laporan deleted successfully'
+        // ]);
+        return redirect()->route('home')->with('status','berhasil hapus');
+
     }
 }
