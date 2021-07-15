@@ -159,7 +159,8 @@
 											<button class="btn btn-xs {{$warna}}">Tidak Ada Aksi</button> 
 										@endif
 										{{-- <a href="{{ route('rt.dashboard-rt.show', ['id' => $p->id	]) }}">  --}}
-											<button type="button" class="btn btn-xs btn-danger">Hapus</button>
+											{{-- <button type="button" class="btn btn-xs btn-danger">Hapus</button> --}}
+											<a href="{{ route('laporan.hapus', ['id' => $p->id	]) }}" class="btn btn-danger">Hapus</a>
 										{{-- </a> --}}
 									@endif
 								</td>

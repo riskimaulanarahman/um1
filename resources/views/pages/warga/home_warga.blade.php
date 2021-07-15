@@ -107,7 +107,7 @@
 									@if($p->status == 'menunggu')
 									<a href="{{ route('warga.dashboard-warga.show', ['id' => $p->id	]) }}" class="btn btn-warning">Ubah</a>
 									@endif
-									<a href="{{ route('warga.laporan.hapus', ['id' => $p->id	]) }}" class="btn btn-danger">Hapus</a>
+									<a href="{{ route('laporan.hapus', ['id' => $p->id	]) }}" class="btn btn-danger">Hapus</a>
 
 								</td>
 								
